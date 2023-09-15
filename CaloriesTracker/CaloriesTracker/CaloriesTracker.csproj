@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+    <ProduceReferenceAssemblyInOutDir>true</ProduceReferenceAssemblyInOutDir>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="System.Text.Json" Version="7.0.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="views\" />
+    <None Remove="db\" />
+    <None Remove="db\Products\" />
+    <None Remove="models\" />
+    <None Remove="ViewModels\" />
+    <None Remove="db\Products\products.json" />
+    <None Remove="db\Images\" />
+    <None Remove="db\Stats\" />
+    <None Remove="db\Stats\stats.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="views\" />
+    <Folder Include="db\" />
+    <Folder Include="db\Products\" />
+    <Folder Include="models\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="db\Images\" />
+    <Folder Include="db\Stats\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="db\Products\products.json" />
+    <EmbeddedResource Include="db\Stats\stats.json" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CaloriesTracker.StatsPage">
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Calories Tracker Stats" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+            <!-- Add your UI elements for displaying statistics here -->
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CaloriesTracker.ProductsPage">
+    <ContentPage.Content>
+        <ListView x:Name="productListView">
+    <ListView.ItemTemplate>
+        <DataTemplate>
+            <ViewCell>
+                <StackLayout Orientation="Horizontal">
+                    <!-- Product Name -->
+                    <Label Text="{Binding Name}" FontAttributes="Bold" />
+
+                    <!-- Image -->
+                    <Image
+                        Source="{Binding Img}"
+                        WidthRequest="100"
+                        HeightRequest="100"
+                        Aspect="AspectFit"
+                    />
+
+                    <!-- Hidden Parameters -->
+                    <Label Text="{Binding Calories}" IsVisible="False" />
+                    <Label Text="{Binding Proteins}" IsVisible="False" />
+                    <Label Text="{Binding Carbs}" IsVisible="False" />
+                    <Label Text="{Binding Fats}" IsVisible="False" />
+
+                    <!-- Add Button -->
+                    <Button
+                        Text="Add"
+                        Command="{Binding Source={x:Reference productListView}, Path=BindingContext.AddToCartCommand}"
+                        CommandParameter="{Binding .}"
+                        WidthRequest="60"
+                        HeightRequest="30"
+                        Clicked="AddButton_Clicked"
+                    />
+                </StackLayout>
+            </ViewCell>
+        </DataTemplate>
+    </ListView.ItemTemplate>
+</ListView>
+
+    </ContentPage.Content>
+</ContentPage>

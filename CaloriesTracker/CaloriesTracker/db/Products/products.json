@@ -1,0 +1,92 @@
+﻿[
+  {
+    "Name": "Apple",
+    "Img": "https://static.vecteezy.com/system/resources/thumbnails/008/848/360/small/fresh-apple-fruit-free-png.png",
+    "Category": "Fruits",
+    "Calories": 52,
+    "Proteins": 0.26,
+    "Carbs": 14.34,
+    "Fats": 0.17
+  },
+  {
+    "Name": "Banana",
+    "Img": "https://w7.pngwing.com/pngs/55/75/png-transparent-graphy-banana-fruit-footage-berry-golden-banana-food-golden-frame-orange.png",
+    "Category": "Fruits",
+    "Calories": 89,
+    "Proteins": 1.09,
+    "Carbs": 22.84,
+    "Fats": 0.33
+  },
+  {
+    "Name": "Chicken Breast",
+    "Img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpK11lMmegfUPDr6ZYB0TdesQ1Hr45dpfB4HKHDKQeWA&s",
+    "Category": "Meat",
+    "Calories": 165,
+    "Proteins": 31,
+    "Carbs": 0,
+    "Fats": 3.6
+  },
+  {
+    "Name": "Broccoli",
+    "Img": "https://w7.pngwing.com/pngs/1023/225/png-transparent-broccoli-organic-food-vegetable-broccoli-leaf-vegetable-food-cooking-thumbnail.png",
+    "Category": "Vegetables",
+    "Calories": 55,
+    "Proteins": 3.7,
+    "Carbs": 11.2,
+    "Fats": 0.6
+  },
+  {
+    "Name": "Rice",
+    "Img": "https://img.freepik.com/premium-photo/dry-white-long-rice-basmati-wooden-bowl-isolated-white-background_434420-1800.jpg?w=2000",
+    "Category": "Grains",
+    "Calories": 130,
+    "Proteins": 2.7,
+    "Carbs": 28.2,
+    "Fats": 0.3
+  },
+  {
+    "Name": "Salmon",
+    "Img": "https://w7.pngwing.com/pngs/846/995/png-transparent-pink-salmon-smoked-salmon-fish-steak-others-food-seafood-recipe-thumbnail.png",
+    "Category": "Fish",
+    "Calories": 206,
+    "Proteins": 22,
+    "Carbs": 0,
+    "Fats": 13
+  },
+  {
+    "Name": "Spinach",
+    "Img": "https://w7.pngwing.com/pngs/328/365/png-transparent-spinach-leaf-vegetable-pakora-chard-vegetable-natural-foods-leaf-vegetable-food-thumbnail.png",
+    "Category": "Vegetables",
+    "Calories": 23,
+    "Proteins": 2.9,
+    "Carbs": 3.6,
+    "Fats": 0.4
+  },
+  {
+    "Name": "Pasta",
+    "Img": "https://w7.pngwing.com/pngs/462/916/png-transparent-pasta-spaghetti-with-meatballs-pasta-salad-tomato-sauce-pastas-miscellaneous-food-recipe-thumbnail.png",
+    "Category": "Grains",
+    "Calories": 131,
+    "Proteins": 5.2,
+    "Carbs": 25.4,
+    "Fats": 1.1
+  },
+  {
+    "Name": "Egg",
+    "Img": "https://e7.pngegg.com/pngimages/560/28/png-clipart-chicken-egg-onsen-tamago-food-egg-cooking-broken-egg.png",
+    "Category": "Dairy & Eggs",
+    "Calories": 68,
+    "Proteins": 5.5,
+    "Carbs": 0.6,
+    "Fats": 4.8
+  },
+  {
+    "Name": "Cheese",
+    "Img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqmaUsvVYER6MAXFQUs0eVmGOZkjVjfzo11fwUu7M&s",
+    "Category": "Dairy & Eggs",
+    "Calories": 402,
+    "Proteins": 25,
+    "Carbs": 3.2,
+    "Fats": 33.5
+  }
+]
