@@ -14,7 +14,7 @@ namespace CaloriesTracker
         public double Proteins { get; set; }
         public double Carbs { get; set; }
         public double Fats { get; set; }
-
+        public double WeightInGrams { get; set; }
         // Add other properties as needed
 
         public override string ToString()

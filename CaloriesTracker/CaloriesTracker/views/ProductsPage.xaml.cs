@@ -34,34 +34,58 @@ namespace CaloriesTracker
             {
                 try
                 {
-                    // Create a new product entry with the current date
-                    Product newProduct = new Product
+                    // Use an Entry to get the weight input from the user
+                    var weightEntry = new Entry
                     {
-                        Name = product.Name,
-                        Calories = product.Calories,
-                        Carbs = product.Carbs,
-                        Fats = product.Fats,
-                        Proteins = product.Proteins,
-                        Img = product.Img,
-                        Description = product.Description,
-                        Category = product.Category,
-                        Date = DateTime.Now.Date // Set the date to today's date
+                        Placeholder = "Enter weight in grams",
+                        Keyboard = Keyboard.Numeric // Ensure numeric keyboard for weight input
                     };
-                    StatsService statsInstance = new StatsService();
-                    // Load existing stats from the file (if any)
-                    List<Product> stats = statsInstance.LoadStats();
 
-                    // Add the new product entry to the stats list
-                    stats.Add(newProduct);
+                    // Create a dialog box to get weight input from the user
+                    var weightInput = await DisplayPromptAsync("Enter Weight", $"Enter weight for {product.Name} in grams:", "OK", "Cancel", null, -1, null, null);
 
-                    // Serialize the stats list to JSON
-                    string statsJson = JsonConvert.SerializeObject(stats);
 
-                    // Save the JSON data to a file
-                    statsInstance.SaveStats(stats);
+                    if (!string.IsNullOrEmpty(weightInput))
+                    {
+                        if (double.TryParse(weightInput, out double weightInGrams))
+                        {
+                            // Create a new product entry with the current date and weight
+                            Product newProduct = new Product
+                            {
+                                Name = product.Name,
+                                Calories = product.Calories,
+                                Carbs = product.Carbs,
+                                Fats = product.Fats,
+                                Proteins = product.Proteins,
+                                Img = product.Img,
+                                Description = product.Description,
+                                Category = product.Category,
+                                Date = DateTime.Now.Date, // Set the date to today's date
+                                WeightInGrams = weightInGrams // Set the weight
+                            };
 
-                    // Inform the user that the product has been added to the stats file
-                    await DisplayAlert("Success", $"{product.Name} has been added to the stats file.", "OK");
+                            StatsService statsInstance = new StatsService();
+
+                            // Load existing stats from the file (if any)
+                            List<Product> stats = statsInstance.LoadStats();
+
+                            // Add the new product entry to the stats list
+                            stats.Add(newProduct);
+
+                            // Serialize the stats list to JSON
+                            string statsJson = JsonConvert.SerializeObject(stats);
+
+                            // Save the JSON data to a file
+                            statsInstance.SaveStats(stats);
+
+                            // Inform the user that the product has been added to the stats file
+                            await DisplayAlert("Success", $"{product.Name} (Weight: {weightInGrams} grams) has been added to the stats file.", "OK");
+                        }
+                        else
+                        {
+                            await DisplayAlert("Error", "Please enter a valid numeric weight in grams.", "OK");
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -70,9 +94,10 @@ namespace CaloriesTracker
             }
         }
 
-       
 
-        
+
+
+
 
     }
 }

@@ -169,20 +169,39 @@ namespace CaloriesTracker
         }
         private double GetConsumedMacroValue(string macroName)
         {
-            StatsService statsInstance = new StatsService();
-            // Load existing stats from the file (if any)
-            List<Product> stats = statsInstance.LoadStats();
+            try
+            {
+                StatsService statsInstance = new StatsService();
+                // Load existing stats from the file (if any)
+                List<Product> stats = statsInstance.LoadStats();
 
-            // Get today's date without the time component
-            DateTime today = DateTime.Now.Date;
+                // Get today's date without the time component
+                DateTime today = DateTime.Now.Date;
 
-            // Calculate the sum of the specific macro for entries with today's date
-            double consumedValue = stats
-                .Where(product => product.Date == today) // Filter by today's date
-                .Sum(product => GetMacroValueByName(product, macroName)); // Sum the specific macro for matching entries
+                // Calculate the sum of the specific macro for entries with today's date
+                double consumedValue = 0;
 
-            return consumedValue;
+                foreach (var product in stats)
+                {
+                    if (product.Date == today)
+                    {
+                        // Calculate the specific macro value based on weight
+                        double weightedMacroValue = GetMacroValueByName(product, macroName) * (product.WeightInGrams / 100.0);
+
+                        // Add the weighted macro value to the consumedValue
+                        consumedValue += weightedMacroValue;
+                    }
+                }
+
+                return consumedValue;
+            }
+            catch (Exception ex)
+            {
+                DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
+                return 0; // Return 0 in case of an error
+            }
         }
+
 
 
 

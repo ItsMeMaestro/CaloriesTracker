@@ -48,11 +48,26 @@ namespace CaloriesTracker
                 // Load the stats from the file
                 List<Product> stats = statsInstance.LoadStats();
 
-                // Calculate the sum of calories, proteins, carbs, and fats
-                double totalCalories = stats.Sum(p => p.Calories);
-                double totalProteins = stats.Sum(p => p.Proteins);
-                double totalCarbs = stats.Sum(p => p.Carbs);
-                double totalFats = stats.Sum(p => p.Fats);
+                // Initialize variables to store the total values
+                double totalCalories = 0;
+                double totalProteins = 0;
+                double totalCarbs = 0;
+                double totalFats = 0;
+
+                foreach (var product in stats)
+                {
+                    // Calculate the nutrient values based on weight
+                    double weightedCalories = product.Calories * (product.WeightInGrams / 100.0);
+                    double weightedProteins = product.Proteins * (product.WeightInGrams / 100.0);
+                    double weightedCarbs = product.Carbs * (product.WeightInGrams / 100.0);
+                    double weightedFats = product.Fats * (product.WeightInGrams / 100.0);
+
+                    // Add the weighted values to the totals
+                    totalCalories += weightedCalories;
+                    totalProteins += weightedProteins;
+                    totalCarbs += weightedCarbs;
+                    totalFats += weightedFats;
+                }
 
                 // Set the bindings for the labels in the XAML
                 BindingContext = new
@@ -68,6 +83,7 @@ namespace CaloriesTracker
                 DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
             }
         }
+
         private async void ClearStatistics_Clicked(object sender, EventArgs e)
         {
             var result = await DisplayAlert("Clear Statistics", "Are you sure you want to clear the statistics?", "Yes", "No");
