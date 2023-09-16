@@ -5,6 +5,7 @@ using Xamarin.Forms.PlatformConfiguration.TizenSpecific;
 using System.Collections.Generic;
 using System.Linq;
 
+
 namespace CaloriesTracker
 {
     public partial class DailyGoalsPage : ContentPage
@@ -46,6 +47,37 @@ namespace CaloriesTracker
             double carbsProgressPercentage = CalculateProgressPercentage("Carbs");
             carbsLabel.Text = $"Carbs Progress: {carbsProgressPercentage}%";
             carbsProgressBar.Progress = carbsProgressPercentage / 100;
+        }
+        private void OnGoalEntryTextChanged(object sender, TextChangedEventArgs e)
+        {
+            var entry = (Xamarin.Forms.Entry)sender;
+            var label = GetGoalLabelForEntry(entry);
+
+            if (!string.IsNullOrWhiteSpace(entry.Text))
+            {
+                label.Text = $"Goal: {entry.Text}";
+                label.IsVisible = true;
+                entry.IsVisible = false;
+            }
+            else
+            {
+                label.IsVisible = false;
+                entry.IsVisible = true;
+            }
+        }
+
+        private Xamarin.Forms.Label GetGoalLabelForEntry(Xamarin.Forms.Entry entry)
+        {
+            if (entry == caloriesEntry)
+                return caloriesGoalLabel;
+            else if (entry == proteinsEntry)
+                return proteinsGoalLabel;
+            else if (entry == carbsEntry)
+                return carbsGoalLabel;
+            else if (entry == fatsEntry)
+                return fatsGoalLabel;
+
+            return null;
         }
 
 
@@ -124,9 +156,10 @@ namespace CaloriesTracker
         {
             try
             {
-                Preferences.Remove(CaloriesGoalKey);
-                Preferences.Remove(ProteinsGoalKey);
-
+                Preferences.Remove("CaloriesGoalKey");
+                Preferences.Remove("ProteinsGoalKey");
+                Preferences.Remove("CarbsGoalKey");
+                Preferences.Remove("FatsGoalKey");
                 DisplayAlert("Success", "Goals reset successfully", "OK");
             }
             catch (Exception ex)
@@ -166,7 +199,7 @@ namespace CaloriesTracker
                     return product.Carbs;
                 case "Fats":
                     return product.Fats;
-                // Add more cases for other macro categories if needed
+                
                 default:
                     return 0.0; // Return 0 for unknown macro categories
             }

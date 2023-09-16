@@ -4,13 +4,29 @@
              x:Class="CaloriesTracker.DailyGoalsPage">
 
     <ContentPage.Content>
-        <StackLayout>
+        <ScrollView>
+            <StackLayout>
             <Label Text="Daily Goals" FontSize="24" HorizontalOptions="CenterAndExpand" Margin="0,10" />
 
-            <Entry x:Name="caloriesEntry" Placeholder="Enter daily calories goal" Margin="20" />
-            <Entry x:Name="proteinsEntry" Placeholder="Enter daily proteins goal" Margin="20" />
-            <Entry x:Name="carbsEntry" Placeholder="Enter daily carbs goal" Margin="20" />
-            <Entry x:Name="fatsEntry" Placeholder="Enter daily fats goal" Margin="20" />
+            <StackLayout x:Name="caloriesStack" Margin="20">
+                <Entry x:Name="caloriesEntry" Placeholder="Enter daily calories goal" />
+                <Label x:Name="caloriesGoalLabel" IsVisible="False" />
+            </StackLayout>
+
+            <StackLayout x:Name="proteinsStack" Margin="20">
+                <Entry x:Name="proteinsEntry" Placeholder="Enter daily proteins goal" />
+                <Label x:Name="proteinsGoalLabel" IsVisible="False" />
+            </StackLayout>
+
+            <StackLayout x:Name="carbsStack" Margin="20">
+                <Entry x:Name="carbsEntry" Placeholder="Enter daily carbs goal" />
+                <Label x:Name="carbsGoalLabel" IsVisible="False" />
+            </StackLayout>
+
+            <StackLayout x:Name="fatsStack" Margin="20">
+                <Entry x:Name="fatsEntry" Placeholder="Enter daily fats goal" />
+                <Label x:Name="fatsGoalLabel" IsVisible="False" />
+            </StackLayout>
 
             <Button Text="Set Goals" Clicked="SetGoals_Clicked" HorizontalOptions="CenterAndExpand" Margin="0,10" />
 
@@ -28,5 +44,8 @@
 
             <Button Text="Reset Goals" Clicked="ResetGoals_Clicked" HorizontalOptions="CenterAndExpand" Margin="0,10" />
         </StackLayout>
+
+        </ScrollView>
+        
     </ContentPage.Content>
 </ContentPage>
