@@ -8,7 +8,7 @@ namespace CaloriesTracker
         public string Img { get; set; }
         public string Description { get; set; }
         public string Category { get; set; }
-
+        public DateTime Date { get; set; }
         // Additional properties for nutritional information
         public double Calories { get; set; }
         public double Proteins { get; set; }

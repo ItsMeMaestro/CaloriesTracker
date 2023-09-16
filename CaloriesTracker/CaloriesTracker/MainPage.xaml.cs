@@ -13,7 +13,9 @@ namespace CaloriesTracker
         public MainPage()
         {
             InitializeComponent();
+
         }
+        
     }
 }
 

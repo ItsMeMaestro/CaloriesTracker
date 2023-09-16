@@ -3,25 +3,31 @@
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             x:Class="CaloriesTracker.MainPage"
             xmlns:views="clr-namespace:CaloriesTracker"> <!-- Adjust the namespace as needed -->
+    
 
-    <!-- Page 1 -->
-    <NavigationPage Title="Find and Add Products">
-        <x:Arguments>
-            <views:ProductsPage /> <!-- Use the correct namespace and class name -->
-        </x:Arguments>
-    </NavigationPage>
+<NavigationPage Title="Products">
+    <x:Arguments>
+        <views:ProductsPage />
+    </x:Arguments>
+    
+</NavigationPage>
 
-    <!-- Page 2 -->
-    <NavigationPage Title="Daily Goal Fulfillment">
-        <x:Arguments>
-            <views:GoalPage /> <!-- Use the correct namespace and class name -->
-        </x:Arguments>
-    </NavigationPage>
+<!-- Page 2 -->
+<NavigationPage Title="Goals" BackgroundColor="AliceBlue"  >
+    <x:Arguments>
+        <views:DailyGoalsPage/>
+    </x:Arguments>
+    
+</NavigationPage>
 
-    <!-- Page 3 -->
-    <NavigationPage Title="Calories Tracker Stats">
-        <x:Arguments>
-            <views:StatsPage /> <!-- Use the correct namespace and class name -->
-        </x:Arguments>
-    </NavigationPage>
+<!-- Page 3 -->
+<NavigationPage Title="Stats">
+    <x:Arguments>
+        <views:StatsPage />
+    </x:Arguments>
+    <NavigationPage.TitleView>
+        <Label Text="Stats" FontAttributes="Bold, Italic" FontSize="24" />
+    </NavigationPage.TitleView>
+</NavigationPage>
+
 </TabbedPage>

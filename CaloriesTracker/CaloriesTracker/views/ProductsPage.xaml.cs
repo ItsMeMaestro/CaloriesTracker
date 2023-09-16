@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
- // Import your Product model namespace
-using CaloriesTracker; // Import the namespace of your ProductsViewModel
+
 using Xamarin.Essentials;
 using Newtonsoft.Json;
 using System.IO;
@@ -35,15 +34,29 @@ namespace CaloriesTracker
             {
                 try
                 {
+                    // Create a new product entry with the current date
+                    Product newProduct = new Product
+                    {
+                        Name = product.Name,
+                        Calories = product.Calories,
+                        Carbs = product.Carbs,
+                        Fats = product.Fats,
+                        Proteins = product.Proteins,
+                        Img = product.Img,
+                        Description = product.Description,
+                        Category = product.Category,
+                        Date = DateTime.Now.Date // Set the date to today's date
+                    };
+
                     // Load existing stats from the file (if any)
                     List<Product> stats = LoadStatsFromFile();
 
-                    // Add the current product to the stats list
-                    stats.Add(product);
+                    // Add the new product entry to the stats list
+                    stats.Add(newProduct);
 
                     // Serialize the stats list to JSON
                     string statsJson = JsonConvert.SerializeObject(stats);
-                   
+
                     // Save the JSON data to a file
                     SaveStatsToFile(statsJson);
 
@@ -53,10 +66,10 @@ namespace CaloriesTracker
                 catch (Exception ex)
                 {
                     await DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
-                   
                 }
             }
         }
+
         // Helper method to load existing stats from the file (or create an empty list if the file doesn't exist)
         private List<Product> LoadStatsFromFile()
         {
