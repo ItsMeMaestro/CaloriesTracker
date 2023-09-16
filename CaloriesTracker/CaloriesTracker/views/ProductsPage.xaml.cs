@@ -43,7 +43,7 @@ namespace CaloriesTracker
 
                     // Serialize the stats list to JSON
                     string statsJson = JsonConvert.SerializeObject(stats);
-
+                   
                     // Save the JSON data to a file
                     SaveStatsToFile(statsJson);
 
