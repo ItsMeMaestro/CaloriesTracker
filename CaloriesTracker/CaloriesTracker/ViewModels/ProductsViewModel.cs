@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq; // Required for LINQ
 using System.Reflection;
 using System.Text.Json;
 
@@ -8,6 +9,14 @@ namespace CaloriesTracker
 {
     public class ProductsViewModel
     {
+        private List<Product> allProducts; // Store all products
+
+        public ProductsViewModel()
+        {
+            // Initialize the list of all products
+            allProducts = LoadProducts();
+        }
+
         public List<Product> LoadProducts()
         {
             List<Product> products = new List<Product>();
@@ -36,7 +45,22 @@ namespace CaloriesTracker
 
             return products;
         }
+
+        public List<Product> SearchProducts(string query)
+        {
+            // Filter the products based on the search query
+            if (string.IsNullOrWhiteSpace(query))
+            {
+                // If the query is empty, return all products
+                return allProducts;
+            }
+            else
+            {
+                // Filter products based on the search query (e.g., by Name or Category)
+                return allProducts
+                    .Where(product => product.Name.ToLower().Contains(query.ToLower()) || product.Category.ToLower().Contains(query.ToLower()))
+                    .ToList();
+            }
+        }
     }
 }
-
-

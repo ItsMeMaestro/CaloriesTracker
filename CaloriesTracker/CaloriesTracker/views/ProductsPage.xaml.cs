@@ -5,21 +5,40 @@ using Xamarin.Forms;
 using Xamarin.Essentials;
 using Newtonsoft.Json;
 using System.IO;
+using System.Linq;
 
 namespace CaloriesTracker
 {
     public partial class ProductsPage : ContentPage
     {
+        private ProductsViewModel viewModel;
+        private List<Product> filteredProducts; // Store filtered products
+
         public ProductsPage()
         {
             InitializeComponent();
 
-            // Create an instance of ProductsViewModel to load products
-            var viewModel = new ProductsViewModel();
-            var products = viewModel.LoadProducts();
+            // Initialize ViewModel and filteredProducts list
+            viewModel = new ProductsViewModel();
+            filteredProducts = new List<Product>();
 
             // Set the ListView's ItemsSource to the loaded products
-            productListView.ItemsSource = products;
+            productListView.ItemsSource = viewModel.LoadProducts();
+
+            // Initialize the search command
+            searchBar.TextChanged += SearchBar_TextChanged;
+        }
+
+        private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            // Get the search query from the SearchBar
+            string query = e.NewTextValue;
+
+            // Use the ViewModel to filter products based on the query
+            filteredProducts = viewModel.SearchProducts(query);
+
+            // Set the ListView's ItemsSource to display the filtered products
+            productListView.ItemsSource = filteredProducts;
         }
 
         private async void AddButton_Clicked(object sender, EventArgs e)

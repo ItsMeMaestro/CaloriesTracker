@@ -3,42 +3,54 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CaloriesTracker.ProductsPage">
     <ContentPage.Content>
-        <ListView x:Name="productListView">
-    <ListView.ItemTemplate>
-        <DataTemplate>
-            <ViewCell>
-                <StackLayout Orientation="Horizontal">
-                    <!-- Product Name -->
-                    <Label Text="{Binding Name}" FontAttributes="Bold" />
+        <StackLayout>
+            <!-- SearchBar for product search -->
+            <SearchBar x:Name="searchBar" Placeholder="Search Products" SearchCommand="{Binding SearchCommand}" />
 
-                    <!-- Image -->
-                    <Image
-                        Source="{Binding Img}"
-                        WidthRequest="100"
-                        HeightRequest="100"
-                        Aspect="AspectFit"
-                    />
+            <!-- ListView to display filtered products -->
+            <ListView x:Name="productListView">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
 
-                    <!-- Hidden Parameters -->
-                    <Label Text="{Binding Calories}" IsVisible="False" />
-                    <Label Text="{Binding Proteins}" IsVisible="False" />
-                    <Label Text="{Binding Carbs}" IsVisible="False" />
-                    <Label Text="{Binding Fats}" IsVisible="False" />
+                                <!-- Product Name -->
+                                <Label Text="{Binding Name}" FontAttributes="Bold" />
 
-                    <!-- Add Button -->
-                    <Button
-                        Text="Add"
-                        Command="{Binding Source={x:Reference productListView}, Path=BindingContext.AddToCartCommand}"
-                        CommandParameter="{Binding .}"
-                        WidthRequest="60"
-                        HeightRequest="30"
-                        Clicked="AddButton_Clicked"
-                    />
-                </StackLayout>
-            </ViewCell>
-        </DataTemplate>
-    </ListView.ItemTemplate>
-</ListView>
+                                <!-- Add Button -->
+                                <Button
+                                    Text="Add"
+                                    Command="{Binding Source={x:Reference productListView}, Path=BindingContext.AddToCartCommand}"
+                                    CommandParameter="{Binding .}"
+                                    WidthRequest="60"
+                                    HeightRequest="30"
+                                    Clicked="AddButton_Clicked"
+                                    Grid.Column="1"
+                                />
 
+                                <!-- Image -->
+                                <Image
+                                    Source="{Binding Img}"
+                                    WidthRequest="100"
+                                    HeightRequest="100"
+                                    Aspect="AspectFit"
+                                    HorizontalOptions="End" 
+                                />
+
+                                <!-- Hidden Parameters -->
+                                <Label Text="{Binding Calories}" IsVisible="False" />
+                                <Label Text="{Binding Proteins}" IsVisible="False" />
+                                <Label Text="{Binding Carbs}" IsVisible="False" />
+                                <Label Text="{Binding Fats}" IsVisible="False" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
