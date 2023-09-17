@@ -26,7 +26,7 @@ namespace CaloriesTracker
             UpdateProgress();
         }
 
-        private void UpdateProgress()
+        public void UpdateProgress()
         {
             // Update progress for calories
             double caloriesProgressPercentage = CalculateProgressPercentage("Calories");
@@ -106,7 +106,12 @@ namespace CaloriesTracker
 
             UpdateProgress();
         }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
 
+            UpdateProgress();
+        }
         private void SaveGoals()
         {
             try

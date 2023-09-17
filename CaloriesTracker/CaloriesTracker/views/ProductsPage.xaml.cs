@@ -46,7 +46,7 @@ namespace CaloriesTracker
             // Retrieve the product associated with the button clicked
             var button = (Button)sender;
             var product = (Product)button.BindingContext;
-
+            
             // Display a confirmation dialog to ask the user if they want to add the product to the stats file
             var result = await DisplayAlert("Add Product", $"Add {product.Name} to stats file?", "Yes", "No");
             if (result)
@@ -99,6 +99,7 @@ namespace CaloriesTracker
 
                             // Inform the user that the product has been added to the stats file
                             await DisplayAlert("Success", $"{product.Name} (Weight: {weightInGrams} grams) has been added to the stats file.", "OK");
+                            
                         }
                         else
                         {
