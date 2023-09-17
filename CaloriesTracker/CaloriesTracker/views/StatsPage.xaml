@@ -4,25 +4,24 @@
              x:Class="CaloriesTracker.StatsPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Statistics" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" Margin="0,10,0,20" />
+            <Label Text="Average Daily Statistics" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" Margin="0,10,0,20" />
 
-            <!-- Display the sum of calories, proteins, carbs, and fats -->
-            <Label Text="Total Calories: " />
-            <Label Text="{Binding TotalCalories}" />
+            <!-- Display the average daily statistics -->
+            <Label Text="Average Daily Calories: " />
+            <Label Text="{Binding AverageDailyCalories}" />
 
-            <Label Text="Total Proteins: " />
-            <Label Text="{Binding TotalProteins}" />
+            <Label Text="Average Daily Proteins: " />
+            <Label Text="{Binding AverageDailyProteins}" />
 
-            <Label Text="Total Carbs: " />
-            <Label Text="{Binding TotalCarbs}" />
+            <Label Text="Average Daily Carbs: " />
+            <Label Text="{Binding AverageDailyCarbs}" />
 
-            <Label Text="Total Fats: " />
-            <Label Text="{Binding TotalFats}" />
-            <Button Text="Clear Statistics" Clicked="ClearStatistics_Clicked" />
-        
+            <Label Text="Average Daily Fats: " />
+            <Label Text="{Binding AverageDailyFats}" />
+
             <Button Text="Select Month" Clicked="SelectMonthButton_Clicked" />
             <Picker x:Name="monthPicker" Title="Select a Month" IsVisible="false" SelectedIndexChanged="MonthPicker_SelectedIndexChanged">
-            <!-- Add month options here -->
+                <!-- Add month options here -->
             </Picker>
         </StackLayout>
     </ContentPage.Content>

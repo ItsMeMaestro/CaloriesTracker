@@ -26,32 +26,53 @@ namespace CaloriesTracker
         // Event handler for the "Set Goals" button click
         private void SetGoals_Clicked(object sender, EventArgs e)
         {
+            // Toggle the visibility of entry fields and labels
+            caloriesEntry.IsVisible = !caloriesEntry.IsVisible;
+            caloriesGoalLabel.IsVisible = !caloriesGoalLabel.IsVisible;
 
-            SaveGoals();
-            UpdateProgress();
+            proteinsEntry.IsVisible = !proteinsEntry.IsVisible;
+            proteinsGoalLabel.IsVisible = !proteinsGoalLabel.IsVisible;
+
+            carbsEntry.IsVisible = !carbsEntry.IsVisible;
+            carbsGoalLabel.IsVisible = !carbsGoalLabel.IsVisible;
+
+            fatsEntry.IsVisible = !fatsEntry.IsVisible;
+            fatsGoalLabel.IsVisible = !fatsGoalLabel.IsVisible;
+
+            if (!caloriesEntry.IsVisible)
+            {
+                // Entry fields are hidden, save goals and update progress
+                SaveGoals();
+                UpdateProgress();
+            }
         }
+
         // Method to update progress bars and labels based on user-defined goals and consumed values
         public void UpdateProgress()
         {
             // Update progress for calories
-            double caloriesProgressPercentage = CalculateProgressPercentage("Calories");
-            progressLabel.Text = $"Calories Progress: {caloriesProgressPercentage}%";
-            progressBar.Progress = caloriesProgressPercentage / 100;
+            double caloriesProgress = GetConsumedMacroValue("Calories");
+            double caloriesGoal = GetDailyMacroGoal("Calories");
+            progressLabel.Text = $"Calories Progress: {caloriesProgress} / {caloriesGoal}";
+            progressBar.Progress = caloriesProgress / caloriesGoal;
 
             // Update progress for proteins
-            double proteinsProgressPercentage = CalculateProgressPercentage("Proteins");
-            proteinsLabel.Text = $"Proteins Progress: {proteinsProgressPercentage}%";
-            proteinsProgressBar.Progress = proteinsProgressPercentage / 100;
+            double proteinsProgress = GetConsumedMacroValue("Proteins");
+            double proteinsGoal = GetDailyMacroGoal("Proteins");
+            proteinsLabel.Text = $"Proteins Progress: {proteinsProgress} / {proteinsGoal}";
+            proteinsProgressBar.Progress = proteinsProgress / proteinsGoal;
 
             // Update progress for fats
-            double fatsProgressPercentage = CalculateProgressPercentage("Fats");
-            fatsLabel.Text = $"Fats Progress: {fatsProgressPercentage}%";
-            fatsProgressBar.Progress = fatsProgressPercentage / 100;
+            double fatsProgress = GetConsumedMacroValue("Fats");
+            double fatsGoal = GetDailyMacroGoal("Fats");
+            fatsLabel.Text = $"Fats Progress: {fatsProgress} / {fatsGoal}";
+            fatsProgressBar.Progress = fatsProgress / fatsGoal;
 
             // Update progress for carbs
-            double carbsProgressPercentage = CalculateProgressPercentage("Carbs");
-            carbsLabel.Text = $"Carbs Progress: {carbsProgressPercentage}%";
-            carbsProgressBar.Progress = carbsProgressPercentage / 100;
+            double carbsProgress = GetConsumedMacroValue("Carbs");
+            double carbsGoal = GetDailyMacroGoal("Carbs");
+            carbsLabel.Text = $"Carbs Progress: {carbsProgress} / {carbsGoal}";
+            carbsProgressBar.Progress = carbsProgress / carbsGoal;
         }
         // Event handler for text entry change
         private void OnGoalEntryTextChanged(object sender, TextChangedEventArgs e)
@@ -87,24 +108,7 @@ namespace CaloriesTracker
         }
 
 
-        // Method to calculate progress percentage for a given macro (Calories, Proteins, Carbs, or Fats)
-        private double CalculateProgressPercentage(string macroName)
-        {
-            // Replace with your calculation logic for the specific macro
-            double consumedValue = GetConsumedMacroValue(macroName);
-            double dailyGoal = GetDailyMacroGoal(macroName);
-
-            if (dailyGoal > 0)
-            {
-                return (consumedValue / dailyGoal) * 100;
-            }
-            else
-            {
-                return 0;
-            }
-        }
-
-
+       
         // Method called when the page appears
         protected override void OnAppearing()
         {
@@ -160,7 +164,7 @@ namespace CaloriesTracker
             }
         }
 
-        
+
         private double GetConsumedMacroValue(string macroName)
         {
             try
@@ -195,6 +199,7 @@ namespace CaloriesTracker
                 return 0; // Return 0 in case of an error
             }
         }
+
 
 
 
