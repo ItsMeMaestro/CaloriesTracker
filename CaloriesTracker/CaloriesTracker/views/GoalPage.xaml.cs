@@ -99,13 +99,7 @@ namespace CaloriesTracker
         }
 
 
-        private void ResetGoals_Clicked(object sender, EventArgs e)
-        {
-           
-            ResetGoals();
-
-            UpdateProgress();
-        }
+        
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -157,21 +151,7 @@ namespace CaloriesTracker
             }
         }
 
-        private void ResetGoals()
-        {
-            try
-            {
-                Preferences.Remove("CaloriesGoalKey");
-                Preferences.Remove("ProteinsGoalKey");
-                Preferences.Remove("CarbsGoalKey");
-                Preferences.Remove("FatsGoalKey");
-                DisplayAlert("Success", "Goals reset successfully", "OK");
-            }
-            catch (Exception ex)
-            {
-                DisplayAlert("Error", $"Error resetting goals: {ex.Message}", "OK");
-            }
-        }
+        
         private double GetConsumedMacroValue(string macroName)
         {
             try

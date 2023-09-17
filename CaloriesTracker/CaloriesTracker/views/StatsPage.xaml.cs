@@ -6,48 +6,40 @@ using Xamarin.Forms;
 using Newtonsoft.Json;
 using Xamarin.Essentials;
 using System.IO;
+using System.Globalization;
+
 namespace CaloriesTracker
 {
     public partial class StatsPage : ContentPage
     {
-        StatsService statsInstance = new StatsService();
-        protected override void OnAppearing()
+        // List of month names for the Picker
+        List<string> months = new List<string>
         {
-            base.OnAppearing();
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        };
 
-            // Load and display the statistics whenever the page appears
-            LoadAndDisplayStatistics();
-        }
-        private void LoadAndDisplayStatistics()
-        {
-            try
-            {
-                
-                CalculateStatistics();
-            }
-            catch (Exception ex)
-            {
-                // Handle any exceptions that may occur during file access or JSON deserialization
-                Console.WriteLine($"Error loading stats: {ex.Message}");
-            }
-        }
+        // Initialize the StatsService instance
+        StatsService statsInstance = new StatsService();
+
+      
 
         public StatsPage()
         {
             InitializeComponent();
 
-            // Load and calculate the statistics
-            CalculateStatistics();
+            // Populate the Picker with month options
+            foreach (var month in months)
+            {
+                monthPicker.Items.Add(month);
+            }
         }
 
         // Method to load stats from the JSON file and calculate the sum
-        private void CalculateStatistics()
+        private void CalculateStatistics(List<Product> stats)
         {
             try
             {
-                // Load the stats from the file
-                List<Product> stats = statsInstance.LoadStats();
-
                 // Initialize variables to store the total values
                 double totalCalories = 0;
                 double totalProteins = 0;
@@ -57,10 +49,10 @@ namespace CaloriesTracker
                 foreach (var product in stats)
                 {
                     // Calculate the nutrient values based on weight
-                    double weightedCalories = product.Calories * (product.WeightInGrams / 100.0);
-                    double weightedProteins = product.Proteins * (product.WeightInGrams / 100.0);
-                    double weightedCarbs = product.Carbs * (product.WeightInGrams / 100.0);
-                    double weightedFats = product.Fats * (product.WeightInGrams / 100.0);
+                    double weightedCalories = (product.Calories / 100.0) * product.WeightInGrams;
+                    double weightedProteins = (product.Proteins / 100.0) * product.WeightInGrams;
+                    double weightedCarbs = (product.Carbs / 100.0) * product.WeightInGrams;
+                    double weightedFats = (product.Fats / 100.0) * product.WeightInGrams;
 
                     // Add the weighted values to the totals
                     totalCalories += weightedCalories;
@@ -91,12 +83,11 @@ namespace CaloriesTracker
             if (result)
             {
                 ClearStatistics();
-                LoadAndDisplayStatistics(); // Update the displayed statistics
+                
 
                 await DisplayAlert("Success", "Statistics have been cleared.", "OK");
             }
         }
-
 
         private void ClearStatistics()
         {
@@ -121,7 +112,27 @@ namespace CaloriesTracker
             }
         }
 
+        private void SelectMonthButton_Clicked(object sender, EventArgs e)
+        {
+            monthPicker.IsVisible = !monthPicker.IsVisible;
+        }
 
+        // Handle the selection change in the Picker
+        private void MonthPicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Get the selected month
+            string selectedMonth = monthPicker.SelectedItem.ToString();
 
+            // Parse the selected month into a DateTime object for comparison
+            DateTime selectedDate = DateTime.ParseExact(selectedMonth, "MMMM", CultureInfo.InvariantCulture);
+
+            // Filter the statistics based on the selected month
+            List<Product> filteredStats = statsInstance.LoadStats()
+                .Where(product => product.Date.Month == selectedDate.Month && product.Date.Year == selectedDate.Year)
+                .ToList();
+
+            // Calculate and display statistics for the filtered data
+            CalculateStatistics(filteredStats);
+        }
     }
 }

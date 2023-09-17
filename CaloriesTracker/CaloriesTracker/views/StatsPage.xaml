@@ -19,6 +19,11 @@
             <Label Text="Total Fats: " />
             <Label Text="{Binding TotalFats}" />
             <Button Text="Clear Statistics" Clicked="ClearStatistics_Clicked" />
+        
+            <Button Text="Select Month" Clicked="SelectMonthButton_Clicked" />
+            <Picker x:Name="monthPicker" Title="Select a Month" IsVisible="false" SelectedIndexChanged="MonthPicker_SelectedIndexChanged">
+            <!-- Add month options here -->
+            </Picker>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
