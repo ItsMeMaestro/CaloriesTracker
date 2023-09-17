@@ -1,4 +1,8 @@
-﻿using System;
+﻿/* 
+ Class StatsService implements functions for loading stats(returns Product list).
+ Saving stats that are parsed as a list of Products.
+*/
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;

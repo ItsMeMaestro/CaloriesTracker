@@ -1,7 +1,12 @@
-﻿using System;
+﻿/* 
+    LoadProducts: Implements method to load list of products
+    SearchProducts: Filters based on name and category
+ 
+*/
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq; // Required for LINQ
+using System.Linq; 
 using System.Reflection;
 using System.Text.Json;
 

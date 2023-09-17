@@ -1,4 +1,8 @@
-﻿using System;
+﻿/* 
+ This is a class instance for products.
+ Each product has a name and picture visible, the rest is used for filtering searching and collecting data
+*/
+using System;
 
 namespace CaloriesTracker
 {
@@ -15,7 +19,7 @@ namespace CaloriesTracker
         public double Carbs { get; set; }
         public double Fats { get; set; }
         public double WeightInGrams { get; set; }
-        // Add other properties as needed
+      
 
         public override string ToString()
         {

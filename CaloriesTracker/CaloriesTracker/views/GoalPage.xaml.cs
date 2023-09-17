@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+  This C# file contains the code-behind logic for the DailyGoalsPage in the CaloriesTracker application.
+  The DailyGoalsPage allows users to set and track their daily nutritional goals for calories, proteins, carbs, and fats.
+*/
+using System;
 using Xamarin.Forms;
 using Xamarin.Essentials;
 using Xamarin.Forms.PlatformConfiguration.TizenSpecific;
@@ -10,22 +14,23 @@ namespace CaloriesTracker
 {
     public partial class DailyGoalsPage : ContentPage
     {
+        // Constants for keys used to store and retrieve daily goals in Preferences
         private const string CaloriesGoalKey = "CaloriesGoal";
         private const string ProteinsGoalKey = "ProteinsGoal";
-
+        // Constructor for the DailyGoalsPage
         public DailyGoalsPage()
         {
             InitializeComponent();
             LoadGoals(); 
         }
-
+        // Event handler for the "Set Goals" button click
         private void SetGoals_Clicked(object sender, EventArgs e)
         {
 
             SaveGoals();
             UpdateProgress();
         }
-
+        // Method to update progress bars and labels based on user-defined goals and consumed values
         public void UpdateProgress()
         {
             // Update progress for calories
@@ -48,6 +53,7 @@ namespace CaloriesTracker
             carbsLabel.Text = $"Carbs Progress: {carbsProgressPercentage}%";
             carbsProgressBar.Progress = carbsProgressPercentage / 100;
         }
+        // Event handler for text entry change
         private void OnGoalEntryTextChanged(object sender, TextChangedEventArgs e)
         {
             var entry = (Xamarin.Forms.Entry)sender;
@@ -65,7 +71,7 @@ namespace CaloriesTracker
                 entry.IsVisible = true;
             }
         }
-
+        // Method to get the corresponding label for a text entry
         private Xamarin.Forms.Label GetGoalLabelForEntry(Xamarin.Forms.Entry entry)
         {
             if (entry == caloriesEntry)
@@ -81,7 +87,7 @@ namespace CaloriesTracker
         }
 
 
-
+        // Method to calculate progress percentage for a given macro (Calories, Proteins, Carbs, or Fats)
         private double CalculateProgressPercentage(string macroName)
         {
             // Replace with your calculation logic for the specific macro
@@ -99,13 +105,15 @@ namespace CaloriesTracker
         }
 
 
-        
+        // Method called when the page appears
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
             UpdateProgress();
         }
+
+        // Method to save user-defined goals to Preferences
         private void SaveGoals()
         {
             try
@@ -128,6 +136,7 @@ namespace CaloriesTracker
             }
         }
 
+        // Method to load user-defined goals from Preferences
         private void LoadGoals()
         {
             try
