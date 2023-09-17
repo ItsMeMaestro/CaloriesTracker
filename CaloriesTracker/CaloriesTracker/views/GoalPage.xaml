@@ -22,29 +22,29 @@
             <Label x:Name="fatsLabel" Text="Fats Progress:" FontSize="16" HorizontalOptions="CenterAndExpand" Margin="0,20" />
             
             <ProgressBar x:Name="fatsProgressBar" Progress="0" HorizontalOptions="FillAndExpand" Margin="20" />
-            
+            <Button Text="Set Goals" Clicked="SetGoals_Clicked" HorizontalOptions="CenterAndExpand" Margin="0,10" />
 
             <StackLayout x:Name="caloriesStack" Margin="20">
-                <Entry x:Name="caloriesEntry" Placeholder="Enter daily calories goal" />
+                <Entry x:Name="caloriesEntry" Placeholder="Enter daily calories goal" IsVisible="False"/>
                 <Label x:Name="caloriesGoalLabel" IsVisible="False" />
             </StackLayout>
 
             <StackLayout x:Name="proteinsStack" Margin="20">
-                <Entry x:Name="proteinsEntry" Placeholder="Enter daily proteins goal" />
+                <Entry x:Name="proteinsEntry" Placeholder="Enter daily proteins goal" IsVisible="False"/>
                 <Label x:Name="proteinsGoalLabel" IsVisible="False" />
             </StackLayout>
 
             <StackLayout x:Name="carbsStack" Margin="20">
-                <Entry x:Name="carbsEntry" Placeholder="Enter daily carbs goal" />
+                <Entry x:Name="carbsEntry" Placeholder="Enter daily carbs goal" IsVisible="False"/>
                 <Label x:Name="carbsGoalLabel" IsVisible="False" />
             </StackLayout>
 
             <StackLayout x:Name="fatsStack" Margin="20">
-                <Entry x:Name="fatsEntry" Placeholder="Enter daily fats goal" />
+                <Entry x:Name="fatsEntry" Placeholder="Enter daily fats goal" IsVisible="False"/>
                 <Label x:Name="fatsGoalLabel" IsVisible="False" />
             </StackLayout>
 
-            <Button Text="Set Goals" Clicked="SetGoals_Clicked" HorizontalOptions="CenterAndExpand" Margin="0,10" />
+            
 
         </StackLayout>
 
