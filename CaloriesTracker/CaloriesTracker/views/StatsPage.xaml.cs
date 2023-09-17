@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using Newtonsoft.Json;
 using Xamarin.Essentials;
@@ -22,8 +21,8 @@ namespace CaloriesTracker
         // Initialize the StatsService instance
         StatsService statsInstance = new StatsService();
 
-      
 
+        
         public StatsPage()
         {
             InitializeComponent();
@@ -36,7 +35,7 @@ namespace CaloriesTracker
         }
 
         // Method to load stats from the JSON file and calculate the sum
-        private void CalculateStatistics(List<Product> stats)
+        public void CalculateStatistics(List<Product> stats)
         {
             try
             {
@@ -75,7 +74,30 @@ namespace CaloriesTracker
                 DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
             }
         }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
 
+            // Load and calculate the statistics when the page first appears
+            LoadAndDisplayStatistics();
+        }
+
+        private void LoadAndDisplayStatistics()
+        {
+            // Get the currently selected month (or the default if nothing is selected)
+            string selectedMonth = monthPicker.SelectedItem?.ToString() ?? DateTime.Now.ToString("MMMM", CultureInfo.InvariantCulture);
+
+            // Parse the selected month into a DateTime object for comparison
+            DateTime selectedDate = DateTime.ParseExact(selectedMonth, "MMMM", CultureInfo.InvariantCulture);
+
+            // Filter the statistics based on the selected month
+            List<Product> filteredStats = statsInstance.LoadStats()
+                .Where(product => product.Date.Month == selectedDate.Month && product.Date.Year == selectedDate.Year)
+                .ToList();
+
+            // Calculate and display statistics for the filtered data
+            CalculateStatistics(filteredStats);
+        }
         private async void ClearStatistics_Clicked(object sender, EventArgs e)
         {
             var result = await DisplayAlert("Clear Statistics", "Are you sure you want to clear the statistics?", "Yes", "No");
@@ -116,23 +138,11 @@ namespace CaloriesTracker
         {
             monthPicker.IsVisible = !monthPicker.IsVisible;
         }
-
+        
         // Handle the selection change in the Picker
         private void MonthPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Get the selected month
-            string selectedMonth = monthPicker.SelectedItem.ToString();
-
-            // Parse the selected month into a DateTime object for comparison
-            DateTime selectedDate = DateTime.ParseExact(selectedMonth, "MMMM", CultureInfo.InvariantCulture);
-
-            // Filter the statistics based on the selected month
-            List<Product> filteredStats = statsInstance.LoadStats()
-                .Where(product => product.Date.Month == selectedDate.Month && product.Date.Year == selectedDate.Year)
-                .ToList();
-
-            // Calculate and display statistics for the filtered data
-            CalculateStatistics(filteredStats);
+            LoadAndDisplayStatistics();
         }
     }
 }
