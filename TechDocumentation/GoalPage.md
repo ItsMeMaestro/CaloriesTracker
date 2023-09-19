@@ -8,11 +8,6 @@ The `DailyGoalsPage` class is a Xamarin.Forms content page within the CaloriesTr
 
 This constructor initializes the `DailyGoalsPage` by setting up the user interface and loading user-defined nutritional goals.
 
-**Parameters:** None
-
-**Returns:** None
-
-**Exceptions:** None
 
 ## Methods
 
@@ -24,7 +19,7 @@ This method is an event handler for the "Set Goals" button click. It toggles the
 - `sender` (`object`): The event sender (a button).
 - `e` (`EventArgs`): Event arguments.
 
-**Returns:** None
+
 
 **Exceptions:** This method may throw exceptions related to user input.
 
@@ -32,11 +27,7 @@ This method is an event handler for the "Set Goals" button click. It toggles the
 
 This method updates the progress bars and labels based on user-defined nutritional goals and consumed values for calories, proteins, carbs, and fats.
 
-**Parameters:** None
 
-**Returns:** None
-
-**Exceptions:** None
 
 ### `public void OnGoalEntryTextChanged(object sender, TextChangedEventArgs e)`
 
@@ -46,9 +37,7 @@ This method is an event handler for text entry changes. It updates the correspon
 - `sender` (`object`): The event sender (a text entry).
 - `e` (`TextChangedEventArgs`): Event arguments containing the old and new text values.
 
-**Returns:** None
 
-**Exceptions:** None
 
 ### `public Xamarin.Forms.Label GetGoalLabelForEntry(Xamarin.Forms.Entry entry)`
 
@@ -60,25 +49,18 @@ This method returns the corresponding label for a given text entry. It is used t
 **Returns:**
 - `Xamarin.Forms.Label`: The label associated with the text entry.
 
-**Exceptions:** None
+
 
 ### `protected override void OnAppearing()`
 
 This method is overridden to perform actions when the page appears. It updates the progress bars and labels based on user-defined goals and consumed values.
 
-**Parameters:** None
 
-**Returns:** None
-
-**Exceptions:** None
 
 ### `public void SaveGoals()`
 
 This method saves user-defined nutritional goals to Xamarin.Essentials Preferences for calories, proteins, carbs, and fats. It also displays an alert message to inform the user of the successful goal-saving operation.
 
-**Parameters:** None
-
-**Returns:** None
 
 **Exceptions:** This method may throw exceptions related to user input.
 
@@ -86,9 +68,7 @@ This method saves user-defined nutritional goals to Xamarin.Essentials Preferenc
 
 This method loads user-defined nutritional goals from Xamarin.Essentials Preferences for calories and proteins. It also displays an alert message in case of an error.
 
-**Parameters:** None
 
-**Returns:** None
 
 **Exceptions:** This method may throw exceptions related to preferences access.
 
@@ -115,7 +95,7 @@ This method calculates the value of a specific macro category (e.g., calories, p
 **Returns:**
 - `double`: The value of the specified macro category for the given product.
 
-**Exceptions:** None
+
 
 ### `public double GetDailyMacroGoal(string macroName)`
 
@@ -127,7 +107,7 @@ This method retrieves the user's daily nutritional goal for a specific macro cat
 **Returns:**
 - `double`: The user's daily nutritional goal for the specified macro category.
 
-**Exceptions:** None
+
 
 ## Usage
 
