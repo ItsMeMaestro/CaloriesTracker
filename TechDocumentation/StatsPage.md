@@ -14,10 +14,6 @@ This class relies on the following dependencies:
 - `System.IO`
 - `System.Globalization`
 
-## Constants
-
-None
-
 ## Constructor
 
 ### `public StatsPage()`
