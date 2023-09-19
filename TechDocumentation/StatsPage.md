@@ -20,15 +20,6 @@ This class relies on the following dependencies:
 
 This constructor initializes the `StatsPage` by setting up the user interface, populating the month picker with month options, and loading and displaying statistics for the selected month.
 
-**Parameters:** None
-
-**Returns:** None
-
-**Exceptions:** None
-
-## Properties
-
-None
 
 ## Methods
 
@@ -36,19 +27,12 @@ None
 
 This method is overridden to perform actions when the page first appears. It calls the `LoadAndDisplayStatistics` method to load and display statistics.
 
-**Parameters:** None
 
-**Returns:** None
-
-**Exceptions:** None
 
 ### `private void LoadAndDisplayStatistics()`
 
 This method loads and displays statistics based on the selected month. It retrieves statistics data from the `StatsService` class, filters the data for the selected month, and calculates average daily nutritional values. The results are displayed on the page.
 
-**Parameters:** None
-
-**Returns:** None
 
 **Exceptions:** This method may throw exceptions related to data access or calculations.
 
@@ -60,7 +44,7 @@ This method calculates average daily nutritional statistics based on the provide
 - `stats` (`List<Product>`): The list of statistics data to calculate from.
 - `daysInMonth` (`int`): The number of days in the selected month.
 
-**Returns:** None
+
 
 **Exceptions:** This method may throw exceptions related to calculations.
 
@@ -72,9 +56,6 @@ This method is an event handler for the "Select Month" button click. It toggles 
 - `sender` (`object`): The event sender (a button).
 - `e` (`EventArgs`): Event arguments.
 
-**Returns:** None
-
-**Exceptions:** None
 
 ### `private void MonthPicker_SelectedIndexChanged(object sender, EventArgs e)`
 
@@ -84,9 +65,7 @@ This method is an event handler for the selection change in the month picker. It
 - `sender` (`object`): The event sender (the month picker).
 - `e` (`EventArgs`): Event arguments.
 
-**Returns:** None
 
-**Exceptions:** None
 
 ## Usage
 
