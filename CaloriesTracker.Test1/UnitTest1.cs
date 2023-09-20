@@ -1,42 +1,17 @@
 ﻿using CaloriesTracker;
 
-class Test
-{
-    static public void Main()
-    {
-        
-        List<Product> products = new List<Product>();
-        List<double> results = new List<double>();
-        
-        Product product1 = new Product();
-        Product product2 = new Product();
-        product1.Calories = 200;
-        product1.WeightInGrams = 100;
-        product1.Fats = 10;
-        product1.Carbs = 20;
-        product1.Proteins = 10;
-        products.Add(product1);
-        product2.Calories = 200;
-        product2.WeightInGrams = 100;
-        product2.Fats = 300;
-        product2.Carbs = 20;
-        product2.Proteins = 10;
-        products.Add(product2);
 
-        results = StatsMath(products);
-        for(int i=0;i<4;i++)
-        {
-            Console.WriteLine(results[i]);
-        }
-        
-    }
+public class Tests
+{
+    
+
     static public List<double> StatsMath(List<Product> products)
     {
         List<double> results = new List<double>();
-        double averageDailyCalories=0;
-        double averageDailyProteins=0;
-        double averageDailyCarbs=0;
-        double averageDailyFats=0;
+        double averageDailyCalories = 0;
+        double averageDailyProteins = 0;
+        double averageDailyCarbs = 0;
+        double averageDailyFats = 0;
         results.Add(averageDailyCalories);
         results.Add(averageDailyProteins);
         results.Add(averageDailyCarbs);
@@ -44,7 +19,7 @@ class Test
         Dictionary<DateTime, (double Calories, double Proteins, double Carbs, double Fats)> dailyTotals =
                 new Dictionary<DateTime, (double, double, double, double)>();
 
-        
+
         foreach (var product in products)
         {
             // Calculate the nutrient values based on weight
@@ -54,8 +29,8 @@ class Test
             double weightedFats = (product.Fats / 100.0) * product.WeightInGrams;
 
             // Create a date with the time component set to midnight (removing the time component)
-            //DateTime productDate = new DateTime(2023, 9, 20, 14, 30, 0);
-            DateTime productDate = DateTime.Now;
+            DateTime productDate = new DateTime(2023, 9, 20, 14, 30, 0);
+            //DateTime productDate = DateTime.Now;
 
             // Update the daily totals dictionary
             if (!dailyTotals.ContainsKey(productDate))
@@ -100,9 +75,38 @@ class Test
             }
 
         }
-        
+
         return results;
     }
 
 
+
+    [Test]
+    public void Test1()
+    {
+        List<Product> products = new List<Product>();
+        List<double> results = new List<double>();
+
+        Product product1 = new Product();
+        Product product2 = new Product();
+        product1.Calories = 200;
+        product1.WeightInGrams = 100;
+        product1.Fats = 10;
+        product1.Carbs = 20;
+        product1.Proteins = 10;
+        products.Add(product1);
+        product2.Calories = 200;
+        product2.WeightInGrams = 100;
+        product2.Fats = 300;
+        product2.Carbs = 20;
+        product2.Proteins = 10;
+        products.Add(product2);
+
+        results = StatsMath(products);
+        Assert.AreEqual(results[0],400);
+        Assert.AreEqual(results[1], 20);
+        Assert.AreEqual(results[2], 40);
+        Assert.AreEqual(results[3], 310);
+    }
+   
 }
